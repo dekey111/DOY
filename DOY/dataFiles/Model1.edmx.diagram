@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eb0e4452b621449fab176ffd5cf3d3c9" Name="Diagram1">
+        <EntityTypeShape EntityType="DOYModel.Chief" Width="1.5" PointX="5.75" PointY="8.625" />
+        <EntityTypeShape EntityType="DOYModel.Children" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DOYModel.ChildrenInGroup" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="DOYModel.Contract" Width="1.5" PointX="6" PointY="5" />
+        <EntityTypeShape EntityType="DOYModel.Gender" Width="1.5" PointX="1.5" PointY="16.625" />
+        <EntityTypeShape EntityType="DOYModel.Group" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DOYModel.Kindergarten" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="DOYModel.Kindergartener" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="DOYModel.Parent" Width="1.5" PointX="3.75" PointY="9" />
+        <EntityTypeShape EntityType="DOYModel.Position" Width="1.5" PointX="1.5" PointY="13.875" />
+        <EntityTypeShape EntityType="DOYModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.625" />
+        <EntityTypeShape EntityType="DOYModel.ParentChildren" Width="1.5" PointX="7.75" PointY="8.625" />
+        <AssociationConnector Association="DOYModel.FK_Children_Gender" />
+        <AssociationConnector Association="DOYModel.FK_ChildrenInGroup_Children" />
+        <AssociationConnector Association="DOYModel.FK_Contract_Children" />
+        <AssociationConnector Association="DOYModel.FK_ChildrenInGroup_Group" />
+        <AssociationConnector Association="DOYModel.FK_Contract_Group" />
+        <AssociationConnector Association="DOYModel.FK_Contract_Parent" />
+        <AssociationConnector Association="DOYModel.FK_Kindergarten_Group" />
+        <AssociationConnector Association="DOYModel.FK_Kindergarten_Kindergartener" />
+        <AssociationConnector Association="DOYModel.FK_Kindergartener_Position" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

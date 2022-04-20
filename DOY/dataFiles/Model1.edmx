@@ -1,0 +1,873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище DOYModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Chief">
+          <Key>
+            <PropertyRef Name="ID_Chief" />
+          </Key>
+          <Property Name="ID_Chief" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="DateOfEmployment" Type="date" />
+          <Property Name="WorkExp" Type="int" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="152" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ID_Children" />
+          </Key>
+          <Property Name="ID_Children" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="id_Gender" Type="int" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="152" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ChildrenInGroup">
+          <Key>
+            <PropertyRef Name="id_ChilGroup" />
+          </Key>
+          <Property Name="id_ChilGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Children" Type="int" />
+          <Property Name="id_Group" Type="int" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ID_Contract" />
+          </Key>
+          <Property Name="ID_Contract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Children" Type="int" />
+          <Property Name="DateContract" Type="date" />
+          <Property Name="id_Parent" Type="int" />
+          <Property Name="Pay" Type="int" />
+          <Property Name="id_Group" Type="int" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID_Gender" />
+          </Key>
+          <Property Name="ID_Gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID_Group" />
+          </Key>
+          <Property Name="ID_Group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kindergarten">
+          <Key>
+            <PropertyRef Name="ID_Kindergarten" />
+          </Key>
+          <Property Name="ID_Kindergarten" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cabinet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Floor" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_Group" Type="int" />
+          <Property Name="id_Kindergartener" Type="int" />
+        </EntityType>
+        <EntityType Name="Kindergartener">
+          <Key>
+            <PropertyRef Name="ID_Kindergartener" />
+          </Key>
+          <Property Name="ID_Kindergartener" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Position" Type="int" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="DateOfEmployment" Type="date" />
+          <Property Name="WorkExp" Type="int" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="152" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ID_Parent" />
+          </Key>
+          <Property Name="ID_Parent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="152" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "DOY.dbo.ParentChildren" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ParentChildren">
+          <Key>
+            <PropertyRef Name="ID_Contract" />
+            <PropertyRef Name="ID_Children" />
+            <PropertyRef Name="ID_Parent" />
+          </Key>
+          <Property Name="ID_Contract" Type="int" Nullable="false" />
+          <Property Name="SurnameChild" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstNameChild" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleNameChild" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirthChild" Type="date" />
+          <Property Name="AgeChild" Type="int" />
+          <Property Name="ImageChild" Type="varbinary(max)" />
+          <Property Name="FIOChild" Type="nvarchar" MaxLength="152" />
+          <Property Name="ID_Children" Type="int" Nullable="false" />
+          <Property Name="ID_Parent" Type="int" Nullable="false" />
+          <Property Name="SurnamePar" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstNamePar" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleNamePar" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirthPar" Type="date" />
+          <Property Name="AgePar" Type="int" />
+          <Property Name="ImagePar" Type="varbinary(max)" />
+          <Property Name="PhonePar" Type="nvarchar" MaxLength="50" />
+          <Property Name="FIOPar" Type="nvarchar" MaxLength="152" />
+          <Property Name="Pay" Type="int" />
+          <Property Name="id_Group" Type="int" />
+          <Property Name="DateContract" Type="date" />
+        </EntityType>
+        <Association Name="FK_Children_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Children" Type="Self.Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="id_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildrenInGroup_Children">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ChildrenInGroup" Type="Self.ChildrenInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="ChildrenInGroup">
+              <PropertyRef Name="id_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildrenInGroup_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="ChildrenInGroup" Type="Self.ChildrenInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="ChildrenInGroup">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Children">
+          <End Role="Children" Type="Self.Children" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Parent">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ID_Parent" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergarten_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Kindergarten" Type="Self.Kindergarten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Kindergarten">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergarten_Kindergartener">
+          <End Role="Kindergartener" Type="Self.Kindergartener" Multiplicity="0..1" />
+          <End Role="Kindergarten" Type="Self.Kindergarten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kindergartener">
+              <PropertyRef Name="ID_Kindergartener" />
+            </Principal>
+            <Dependent Role="Kindergarten">
+              <PropertyRef Name="id_Kindergartener" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergartener_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Kindergartener" Type="Self.Kindergartener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Kindergartener">
+              <PropertyRef Name="id_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DOYModelContainer">
+          <EntitySet Name="Chief" EntityType="Self.Chief" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildrenInGroup" EntityType="Self.ChildrenInGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kindergarten" EntityType="Self.Kindergarten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kindergartener" EntityType="Self.Kindergartener" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentChildren" EntityType="Self.ParentChildren" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ParentChildren].[ID_Contract] AS [ID_Contract], 
+    [ParentChildren].[SurnameChild] AS [SurnameChild], 
+    [ParentChildren].[FirstNameChild] AS [FirstNameChild], 
+    [ParentChildren].[MiddleNameChild] AS [MiddleNameChild], 
+    [ParentChildren].[DateOfBirthChild] AS [DateOfBirthChild], 
+    [ParentChildren].[AgeChild] AS [AgeChild], 
+    [ParentChildren].[ImageChild] AS [ImageChild], 
+    [ParentChildren].[FIOChild] AS [FIOChild], 
+    [ParentChildren].[ID_Children] AS [ID_Children], 
+    [ParentChildren].[ID_Parent] AS [ID_Parent], 
+    [ParentChildren].[SurnamePar] AS [SurnamePar], 
+    [ParentChildren].[FirstNamePar] AS [FirstNamePar], 
+    [ParentChildren].[MiddleNamePar] AS [MiddleNamePar], 
+    [ParentChildren].[DateOfBirthPar] AS [DateOfBirthPar], 
+    [ParentChildren].[AgePar] AS [AgePar], 
+    [ParentChildren].[ImagePar] AS [ImagePar], 
+    [ParentChildren].[PhonePar] AS [PhonePar], 
+    [ParentChildren].[FIOPar] AS [FIOPar], 
+    [ParentChildren].[Pay] AS [Pay], 
+    [ParentChildren].[id_Group] AS [id_Group], 
+    [ParentChildren].[DateContract] AS [DateContract]
+    FROM [dbo].[ParentChildren] AS [ParentChildren]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Children_Gender" Association="Self.FK_Children_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildrenInGroup_Children" Association="Self.FK_ChildrenInGroup_Children">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="ChildrenInGroup" EntitySet="ChildrenInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildrenInGroup_Group" Association="Self.FK_ChildrenInGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="ChildrenInGroup" EntitySet="ChildrenInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Children" Association="Self.FK_Contract_Children">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Group" Association="Self.FK_Contract_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Parent" Association="Self.FK_Contract_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergarten_Group" Association="Self.FK_Kindergarten_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Kindergarten" EntitySet="Kindergarten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergarten_Kindergartener" Association="Self.FK_Kindergarten_Kindergartener">
+            <End Role="Kindergartener" EntitySet="Kindergartener" />
+            <End Role="Kindergarten" EntitySet="Kindergarten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergartener_Position" Association="Self.FK_Kindergartener_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Kindergartener" EntitySet="Kindergartener" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DOYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DOYEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Chief" EntityType="DOYModel.Chief" />
+          <EntitySet Name="Children" EntityType="DOYModel.Children" />
+          <EntitySet Name="ChildrenInGroup" EntityType="DOYModel.ChildrenInGroup" />
+          <EntitySet Name="Contract" EntityType="DOYModel.Contract" />
+          <EntitySet Name="Gender" EntityType="DOYModel.Gender" />
+          <EntitySet Name="Group" EntityType="DOYModel.Group" />
+          <EntitySet Name="Kindergarten" EntityType="DOYModel.Kindergarten" />
+          <EntitySet Name="Kindergartener" EntityType="DOYModel.Kindergartener" />
+          <EntitySet Name="Parent" EntityType="DOYModel.Parent" />
+          <EntitySet Name="Position" EntityType="DOYModel.Position" />
+          <EntitySet Name="sysdiagrams" EntityType="DOYModel.sysdiagrams" />
+          <EntitySet Name="ParentChildren" EntityType="DOYModel.ParentChildren" />
+          <AssociationSet Name="FK_Children_Gender" Association="DOYModel.FK_Children_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Children" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildrenInGroup_Children" Association="DOYModel.FK_ChildrenInGroup_Children">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="ChildrenInGroup" EntitySet="ChildrenInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Children" Association="DOYModel.FK_Contract_Children">
+            <End Role="Children" EntitySet="Children" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildrenInGroup_Group" Association="DOYModel.FK_ChildrenInGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="ChildrenInGroup" EntitySet="ChildrenInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Group" Association="DOYModel.FK_Contract_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Parent" Association="DOYModel.FK_Contract_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergarten_Group" Association="DOYModel.FK_Kindergarten_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Kindergarten" EntitySet="Kindergarten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergarten_Kindergartener" Association="DOYModel.FK_Kindergarten_Kindergartener">
+            <End Role="Kindergartener" EntitySet="Kindergartener" />
+            <End Role="Kindergarten" EntitySet="Kindergarten" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kindergartener_Position" Association="DOYModel.FK_Kindergartener_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Kindergartener" EntitySet="Kindergartener" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Chief">
+          <Key>
+            <PropertyRef Name="ID_Chief" />
+          </Key>
+          <Property Name="ID_Chief" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfEmployment" Type="DateTime" Precision="0" />
+          <Property Name="WorkExp" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="152" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="ID_Children" />
+          </Key>
+          <Property Name="ID_Children" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="id_Gender" Type="Int32" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FIO" Type="String" MaxLength="152" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Gender" Relationship="DOYModel.FK_Children_Gender" FromRole="Children" ToRole="Gender" />
+          <NavigationProperty Name="ChildrenInGroup" Relationship="DOYModel.FK_ChildrenInGroup_Children" FromRole="Children" ToRole="ChildrenInGroup" />
+          <NavigationProperty Name="Contract" Relationship="DOYModel.FK_Contract_Children" FromRole="Children" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="ChildrenInGroup">
+          <Key>
+            <PropertyRef Name="id_ChilGroup" />
+          </Key>
+          <Property Name="id_ChilGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Children" Type="Int32" />
+          <Property Name="id_Group" Type="Int32" />
+          <NavigationProperty Name="Children" Relationship="DOYModel.FK_ChildrenInGroup_Children" FromRole="ChildrenInGroup" ToRole="Children" />
+          <NavigationProperty Name="Group" Relationship="DOYModel.FK_ChildrenInGroup_Group" FromRole="ChildrenInGroup" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ID_Contract" />
+          </Key>
+          <Property Name="ID_Contract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Children" Type="Int32" />
+          <Property Name="DateContract" Type="DateTime" Precision="0" />
+          <Property Name="id_Parent" Type="Int32" />
+          <Property Name="Pay" Type="Int32" />
+          <Property Name="id_Group" Type="Int32" />
+          <NavigationProperty Name="Children" Relationship="DOYModel.FK_Contract_Children" FromRole="Contract" ToRole="Children" />
+          <NavigationProperty Name="Group" Relationship="DOYModel.FK_Contract_Group" FromRole="Contract" ToRole="Group" />
+          <NavigationProperty Name="Parent" Relationship="DOYModel.FK_Contract_Parent" FromRole="Contract" ToRole="Parent" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID_Gender" />
+          </Key>
+          <Property Name="ID_Gender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Children" Relationship="DOYModel.FK_Children_Gender" FromRole="Gender" ToRole="Children" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID_Group" />
+          </Key>
+          <Property Name="ID_Group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChildrenInGroup" Relationship="DOYModel.FK_ChildrenInGroup_Group" FromRole="Group" ToRole="ChildrenInGroup" />
+          <NavigationProperty Name="Contract" Relationship="DOYModel.FK_Contract_Group" FromRole="Group" ToRole="Contract" />
+          <NavigationProperty Name="Kindergarten" Relationship="DOYModel.FK_Kindergarten_Group" FromRole="Group" ToRole="Kindergarten" />
+        </EntityType>
+        <EntityType Name="Kindergarten">
+          <Key>
+            <PropertyRef Name="ID_Kindergarten" />
+          </Key>
+          <Property Name="ID_Kindergarten" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cabinet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Floor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_Group" Type="Int32" />
+          <Property Name="id_Kindergartener" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="DOYModel.FK_Kindergarten_Group" FromRole="Kindergarten" ToRole="Group" />
+          <NavigationProperty Name="Kindergartener" Relationship="DOYModel.FK_Kindergarten_Kindergartener" FromRole="Kindergarten" ToRole="Kindergartener" />
+        </EntityType>
+        <EntityType Name="Kindergartener">
+          <Key>
+            <PropertyRef Name="ID_Kindergartener" />
+          </Key>
+          <Property Name="ID_Kindergartener" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Position" Type="Int32" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateOfEmployment" Type="DateTime" Precision="0" />
+          <Property Name="WorkExp" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="152" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Kindergarten" Relationship="DOYModel.FK_Kindergarten_Kindergartener" FromRole="Kindergartener" ToRole="Kindergarten" />
+          <NavigationProperty Name="Position" Relationship="DOYModel.FK_Kindergartener_Position" FromRole="Kindergartener" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ID_Parent" />
+          </Key>
+          <Property Name="ID_Parent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FIO" Type="String" MaxLength="152" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Contract" Relationship="DOYModel.FK_Contract_Parent" FromRole="Parent" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID_Position" />
+          </Key>
+          <Property Name="ID_Position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kindergartener" Relationship="DOYModel.FK_Kindergartener_Position" FromRole="Position" ToRole="Kindergartener" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ParentChildren">
+          <Key>
+            <PropertyRef Name="ID_Contract" />
+            <PropertyRef Name="ID_Children" />
+            <PropertyRef Name="ID_Parent" />
+          </Key>
+          <Property Name="ID_Contract" Type="Int32" Nullable="false" />
+          <Property Name="SurnameChild" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstNameChild" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleNameChild" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirthChild" Type="DateTime" Precision="0" />
+          <Property Name="AgeChild" Type="Int32" />
+          <Property Name="ImageChild" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FIOChild" Type="String" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Children" Type="Int32" Nullable="false" />
+          <Property Name="ID_Parent" Type="Int32" Nullable="false" />
+          <Property Name="SurnamePar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstNamePar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleNamePar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirthPar" Type="DateTime" Precision="0" />
+          <Property Name="AgePar" Type="Int32" />
+          <Property Name="ImagePar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PhonePar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FIOPar" Type="String" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Name="Pay" Type="Int32" />
+          <Property Name="id_Group" Type="Int32" />
+          <Property Name="DateContract" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_Children_Gender">
+          <End Type="DOYModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="DOYModel.Children" Role="Children" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID_Gender" />
+            </Principal>
+            <Dependent Role="Children">
+              <PropertyRef Name="id_Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildrenInGroup_Children">
+          <End Type="DOYModel.Children" Role="Children" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DOYModel.ChildrenInGroup" Role="ChildrenInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="ChildrenInGroup">
+              <PropertyRef Name="id_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Children">
+          <End Type="DOYModel.Children" Role="Children" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DOYModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Children">
+              <PropertyRef Name="ID_Children" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Children" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildrenInGroup_Group">
+          <End Type="DOYModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="DOYModel.ChildrenInGroup" Role="ChildrenInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="ChildrenInGroup">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Group">
+          <End Type="DOYModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="DOYModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Parent">
+          <End Type="DOYModel.Parent" Role="Parent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DOYModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ID_Parent" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="id_Parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergarten_Group">
+          <End Type="DOYModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="DOYModel.Kindergarten" Role="Kindergarten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID_Group" />
+            </Principal>
+            <Dependent Role="Kindergarten">
+              <PropertyRef Name="id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergarten_Kindergartener">
+          <End Type="DOYModel.Kindergartener" Role="Kindergartener" Multiplicity="0..1" />
+          <End Type="DOYModel.Kindergarten" Role="Kindergarten" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kindergartener">
+              <PropertyRef Name="ID_Kindergartener" />
+            </Principal>
+            <Dependent Role="Kindergarten">
+              <PropertyRef Name="id_Kindergartener" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kindergartener_Position">
+          <End Type="DOYModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="DOYModel.Kindergartener" Role="Kindergartener" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID_Position" />
+            </Principal>
+            <Dependent Role="Kindergartener">
+              <PropertyRef Name="id_Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DOYModelContainer" CdmEntityContainer="DOYEntities1">
+          <EntitySetMapping Name="Chief">
+            <EntityTypeMapping TypeName="DOYModel.Chief">
+              <MappingFragment StoreEntitySet="Chief">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
+                <ScalarProperty Name="DateOfEmployment" ColumnName="DateOfEmployment" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID_Chief" ColumnName="ID_Chief" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="DOYModel.Children">
+              <MappingFragment StoreEntitySet="Children">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="id_Gender" ColumnName="id_Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildrenInGroup">
+            <EntityTypeMapping TypeName="DOYModel.ChildrenInGroup">
+              <MappingFragment StoreEntitySet="ChildrenInGroup">
+                <ScalarProperty Name="id_Group" ColumnName="id_Group" />
+                <ScalarProperty Name="id_Children" ColumnName="id_Children" />
+                <ScalarProperty Name="id_ChilGroup" ColumnName="id_ChilGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="DOYModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="id_Group" ColumnName="id_Group" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="id_Parent" ColumnName="id_Parent" />
+                <ScalarProperty Name="DateContract" ColumnName="DateContract" />
+                <ScalarProperty Name="id_Children" ColumnName="id_Children" />
+                <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="DOYModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Gender" ColumnName="ID_Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="DOYModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Group" ColumnName="ID_Group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kindergarten">
+            <EntityTypeMapping TypeName="DOYModel.Kindergarten">
+              <MappingFragment StoreEntitySet="Kindergarten">
+                <ScalarProperty Name="id_Kindergartener" ColumnName="id_Kindergartener" />
+                <ScalarProperty Name="id_Group" ColumnName="id_Group" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+                <ScalarProperty Name="ID_Kindergarten" ColumnName="ID_Kindergarten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kindergartener">
+            <EntityTypeMapping TypeName="DOYModel.Kindergartener">
+              <MappingFragment StoreEntitySet="Kindergartener">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
+                <ScalarProperty Name="DateOfEmployment" ColumnName="DateOfEmployment" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="id_Position" ColumnName="id_Position" />
+                <ScalarProperty Name="ID_Kindergartener" ColumnName="ID_Kindergartener" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parent">
+            <EntityTypeMapping TypeName="DOYModel.Parent">
+              <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="ID_Parent" ColumnName="ID_Parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="DOYModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Position" ColumnName="ID_Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DOYModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentChildren">
+            <EntityTypeMapping TypeName="DOYModel.ParentChildren">
+              <MappingFragment StoreEntitySet="ParentChildren">
+                <ScalarProperty Name="DateContract" ColumnName="DateContract" />
+                <ScalarProperty Name="id_Group" ColumnName="id_Group" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="FIOPar" ColumnName="FIOPar" />
+                <ScalarProperty Name="PhonePar" ColumnName="PhonePar" />
+                <ScalarProperty Name="ImagePar" ColumnName="ImagePar" />
+                <ScalarProperty Name="AgePar" ColumnName="AgePar" />
+                <ScalarProperty Name="DateOfBirthPar" ColumnName="DateOfBirthPar" />
+                <ScalarProperty Name="MiddleNamePar" ColumnName="MiddleNamePar" />
+                <ScalarProperty Name="FirstNamePar" ColumnName="FirstNamePar" />
+                <ScalarProperty Name="SurnamePar" ColumnName="SurnamePar" />
+                <ScalarProperty Name="ID_Parent" ColumnName="ID_Parent" />
+                <ScalarProperty Name="ID_Children" ColumnName="ID_Children" />
+                <ScalarProperty Name="FIOChild" ColumnName="FIOChild" />
+                <ScalarProperty Name="ImageChild" ColumnName="ImageChild" />
+                <ScalarProperty Name="AgeChild" ColumnName="AgeChild" />
+                <ScalarProperty Name="DateOfBirthChild" ColumnName="DateOfBirthChild" />
+                <ScalarProperty Name="MiddleNameChild" ColumnName="MiddleNameChild" />
+                <ScalarProperty Name="FirstNameChild" ColumnName="FirstNameChild" />
+                <ScalarProperty Name="SurnameChild" ColumnName="SurnameChild" />
+                <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
